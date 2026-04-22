@@ -4,9 +4,9 @@ Each small resolver service in this repo is a thin **HTTP adapter** around the m
 
 | Language | Upstream repo | Role in uber-resolver |
 |----------|---------------|------------------------|
-| TypeScript | [decentralized-identity/didwebvh-ts](https://github.com/decentralized-identity/didwebvh-ts) | `resolvers/typescript/` — e.g. call `resolveDID()` from the published package (see upstream Express/Elysia examples). |
-| Rust | [decentralized-identity/didwebvh-rs](https://github.com/decentralized-identity/didwebvh-rs) | `resolvers/rust/` — depend on the `didwebvh` crate (see upstream `resolve` example: `cargo run --example resolve -- <DID>`). |
-| Python | [decentralized-identity/didwebvh-py](https://github.com/decentralized-identity/didwebvh-py) | `resolvers/python/` — e.g. shell out to or import from `did_webvh` (upstream documents `python3 -m did_webvh.resolver "<did>"`). |
+| TypeScript | [decentralized-identity/didwebvh-ts](https://github.com/decentralized-identity/didwebvh-ts) | `resolvers/didwebvh-ts/` — e.g. call `resolveDID()` from the published package (see upstream Express/Elysia examples). |
+| Rust | [decentralized-identity/didwebvh-rs](https://github.com/decentralized-identity/didwebvh-rs) | `resolvers/didwebvh-rs/` — depend on the `didwebvh` crate (see upstream `resolve` example: `cargo run --example resolve -- <DID>`). |
+| Python | [decentralized-identity/didwebvh-py](https://github.com/decentralized-identity/didwebvh-py) | `resolvers/didwebvh-py/` — e.g. shell out to or import from `did_webvh` (upstream documents `python3 -m did_webvh.resolver "<did>"`). |
 
 ## Version alignment
 

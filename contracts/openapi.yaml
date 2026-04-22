@@ -3,11 +3,11 @@ info:
   title: uber-resolver micro API
   version: 0.1.0
   description: |
-    Shared contract for `resolvers/rust`, `resolvers/python`, and `resolvers/typescript`.
+    Shared contract for `resolvers/didwebvh-rs`, `resolvers/didwebvh-py`, and `resolvers/didwebvh-ts`.
     Each service implements the same paths; swap host/port to change engine.
 servers:
   - url: http://localhost:8081
-    description: Rust (default local port in compose)
+    description: didwebvh-rs (default local port in compose)
 paths:
   /health:
     get:
@@ -25,7 +25,7 @@ paths:
                     example: ok
                   engine:
                     type: string
-                    enum: [rust, python, typescript]
+                    enum: [didwebvh-rs, didwebvh-py, didwebvh-ts]
   /resolve:
     post:
       summary: Resolve a did:webvh DID

@@ -15,28 +15,28 @@ See [docs/REFERENCE_IMPLEMENTATIONS.md](docs/REFERENCE_IMPLEMENTATIONS.md) for i
 | Path | Role |
 |------|------|
 | `gateway/` | HTTP BFF: routes `POST /v1/resolve` to the chosen resolver service; normalizes responses. |
-| `resolvers/rust/` | Rust resolver HTTP service. |
-| `resolvers/python/` | Python resolver HTTP service. |
-| `resolvers/typescript/` | TypeScript (Node) resolver HTTP service. |
+| `resolvers/didwebvh-rs/` | Rust resolver HTTP service (didwebvh-rs). |
+| `resolvers/didwebvh-py/` | Python resolver HTTP service (didwebvh-py). |
+| `resolvers/didwebvh-ts/` | TypeScript (Node) resolver HTTP service (didwebvh-ts). |
 | `contracts/` | Shared request/response schema (e.g. OpenAPI or JSON Schema) + golden test vectors. |
 
 ## Principles
 
 - **Same contract** for every implementation (input DID, output DID document / resolution metadata).
 - **Separate processes** (containers), not one polyglot binary.
-- **Delegation** via gateway: `resolver` field or header (`rust` \| `python` \| `ts` \| `auto`).
+- **Delegation** via gateway: `resolver` field or header (`didwebvh-rs` \| `didwebvh-py` \| `didwebvh-ts` \| `auto`).
 
 ## Run the three resolvers (local)
 
 | Service | Port | Command |
 |---------|------|---------|
-| Rust | `8081` | `cd resolvers/rust && cargo run` |
-| Python | `8082` | `cd resolvers/python && python3 -m venv .venv && . .venv/bin/activate && pip install -e . && uber-resolver-python` |
-| TypeScript | `8083` | `cd resolvers/typescript && npm install && npm start` |
+| didwebvh-rs | `8081` | `cd resolvers/didwebvh-rs && cargo run` |
+| didwebvh-py | `8082` | `cd resolvers/didwebvh-py && python3 -m venv .venv && . .venv/bin/activate && pip install -e . && uber-resolver-didwebvh-py` |
+| didwebvh-ts | `8083` | `cd resolvers/didwebvh-ts && npm install && npm start` |
 
 **API (each service):**
 
-- `GET /health` — `{ "status": "ok", "engine": "rust" \| "python" \| "typescript" }`
+- `GET /health` — `{ "status": "ok", "engine": "didwebvh-rs" \| "didwebvh-py" \| "didwebvh-ts" }`
 - `POST /resolve` — JSON body `{ "did": "did:webvh:…" }`
 - `GET /resolve?did=did:webvh:…` — convenience alias
 

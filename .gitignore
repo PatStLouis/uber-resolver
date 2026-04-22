@@ -9,20 +9,20 @@ Thumbs.db
 *.swo
 
 # Rust
-resolvers/rust/target/
+resolvers/didwebvh-rs/target/
 **/*.rs.bk
 
 # Python
-resolvers/python/.venv/
-resolvers/python/__pycache__/
-resolvers/python/src/**/*.egg-info/
+resolvers/didwebvh-py/.venv/
+resolvers/didwebvh-py/__pycache__/
+resolvers/didwebvh-py/src/**/*.egg-info/
 **/*.py[cod]
 **/.pytest_cache/
 **/.mypy_cache/
 
 # Node / TypeScript
-resolvers/typescript/node_modules/
-resolvers/typescript/dist/
+resolvers/didwebvh-ts/node_modules/
+resolvers/didwebvh-ts/dist/
 **/.turbo/
 
 # Env

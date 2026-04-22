@@ -5,11 +5,11 @@ HTTP service on **`POST /resolve`** and **`GET /resolve?did=`** using the **[did
 ## Run (local)
 
 ```bash
-cd resolvers/python
+cd resolvers/didwebvh-py
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
-uber-resolver-python
+uber-resolver-didwebvh-py
 # or: uvicorn uber_resolver_py.app:app --host 0.0.0.0 --port 8082
 ```
 

@@ -39,7 +39,7 @@ fn w3c_success(did: &str, document: serde_json::Value, doc_meta: serde_json::Val
         "didResolutionMetadata": {
             "contentType": "application/did+ld+json",
             "did": did,
-            "driver": "uber-resolver-rust/didwebvh-rs"
+            "driver": "uber-resolver-didwebvh-rs/didwebvh-rs"
         }
     })
 }
@@ -53,7 +53,7 @@ fn w3c_error(did: &str, err: &str, code: &str) -> serde_json::Value {
             "error": code,
             "did": did,
             "detail": err,
-            "driver": "uber-resolver-rust/didwebvh-rs"
+            "driver": "uber-resolver-didwebvh-rs/didwebvh-rs"
         }
     })
 }
@@ -116,7 +116,7 @@ async fn resolve_get(Query(q): Query<ResolveQuery>) -> Response {
 async fn health() -> Json<Health> {
     Json(Health {
         status: "ok",
-        engine: "rust",
+        engine: "didwebvh-rs",
     })
 }
 
@@ -136,7 +136,7 @@ async fn main() {
         .and_then(|s| s.parse().ok())
         .unwrap_or(8081);
     let addr = std::net::SocketAddr::from(([0, 0, 0, 0], port));
-    tracing::info!("uber-resolver-rust listening on http://{addr}");
+    tracing::info!("uber-resolver-didwebvh-rs listening on http://{addr}");
     let listener = tokio::net::TcpListener::bind(addr).await.expect("bind");
     axum::serve(listener, app).await.expect("serve");
 }

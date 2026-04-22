@@ -6,9 +6,9 @@ Scope: **`did:webvh`** resolution only. Each language worker delegates to **[did
  Client (browser / CLI)
         |
         v
-   [ gateway ]  ---------->  [ resolver-rust ]   --> didwebvh-rs
-        |        ---------->  [ resolver-python ] --> didwebvh-py
-        |        ---------->  [ resolver-ts ]     --> didwebvh-ts
+   [ gateway ]  ---------->  [ resolver-didwebvh-rs ] --> didwebvh-rs
+        |        ---------->  [ resolver-didwebvh-py ] --> didwebvh-py
+        |        ---------->  [ resolver-didwebvh-ts ] --> didwebvh-ts
         v
    Normalized JSON response
 ```
@@ -19,7 +19,7 @@ Scope: **`did:webvh`** resolution only. Each language worker delegates to **[did
 
 ## Routing examples
 
-- **Explicit:** `{ "did": "did:...", "resolver": "rust" }`
+- **Explicit:** `{ "did": "did:...", "resolver": "didwebvh-rs" }`
 - **Auto:** try ordered list or parallel with first success / merged errors (policy TBD per product need).
 
 ## DID notes

@@ -7,7 +7,7 @@ HTTP service on **`POST /resolve`** and **`GET /resolve?did=`** using **[didwebv
 Requires **Rust ≥ 1.94** (matches upstream `didwebvh-rs` MSRV).
 
 ```bash
-cd resolvers/rust
+cd resolvers/didwebvh-rs
 cargo run
 # listens on PORT or 8081
 ```
@@ -15,8 +15,8 @@ cargo run
 ## Docker
 
 ```bash
-docker build -t uber-resolver-rust .
-docker run --rm -p 8081:8081 uber-resolver-rust
+docker build -t uber-resolver-didwebvh-rs .
+docker run --rm -p 8081:8081 uber-resolver-didwebvh-rs
 ```
 
 ## Dependency

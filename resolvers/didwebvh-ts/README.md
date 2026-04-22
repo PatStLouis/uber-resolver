@@ -7,7 +7,7 @@ HTTP service on **`POST /resolve`** and **`GET /resolve?did=`** using **[didwebv
 Requires **Node ≥ 20**.
 
 ```bash
-cd resolvers/typescript
+cd resolvers/didwebvh-ts
 npm install
 npm start
 # listens on PORT or 8083
@@ -16,8 +16,8 @@ npm start
 ## Docker
 
 ```bash
-docker build -t uber-resolver-ts .
-docker run --rm -p 8083:8083 uber-resolver-ts
+docker build -t uber-resolver-didwebvh-ts .
+docker run --rm -p 8083:8083 uber-resolver-didwebvh-ts
 ```
 
 ## Dependency

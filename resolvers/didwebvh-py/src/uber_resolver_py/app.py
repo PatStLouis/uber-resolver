@@ -9,8 +9,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-app = FastAPI(title="uber-resolver-python", version="0.1.0")
-ENGINE = "python"
+app = FastAPI(title="uber-resolver-didwebvh-py", version="0.1.0")
+ENGINE = "didwebvh-py"
 
 
 class ResolveBody(BaseModel):

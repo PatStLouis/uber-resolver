@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir --upgrade pip \
 ENV PORT=8082
 EXPOSE 8082
 USER nobody
-CMD ["uber-resolver-python"]
+CMD ["uber-resolver-didwebvh-py"]

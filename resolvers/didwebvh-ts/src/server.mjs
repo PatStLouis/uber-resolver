@@ -6,7 +6,7 @@
 import express from 'express';
 import { resolveDID } from 'didwebvh-ts';
 
-const ENGINE = 'typescript';
+const ENGINE = 'didwebvh-ts';
 const PORT = Number(process.env.PORT || 8083);
 
 function toW3c(result) {
@@ -20,7 +20,7 @@ function toW3c(result) {
       did,
       ...(controlled !== undefined ? { controlled } : {}),
       ...(meta && typeof meta === 'object' ? meta : {}),
-      driver: 'uber-resolver-typescript/didwebvh-ts',
+      driver: 'uber-resolver-didwebvh-ts/didwebvh-ts',
     },
   };
   return base;
@@ -72,5 +72,5 @@ app.get('/resolve', async (req, res) => {
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`uber-resolver-typescript listening on http://0.0.0.0:${PORT}`);
+  console.log(`uber-resolver-didwebvh-ts listening on http://0.0.0.0:${PORT}`);
 });

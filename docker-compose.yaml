@@ -1,22 +1,22 @@
 # Three resolver microservices (same /resolve + /health API).
-# Default ports: Rust 8081, Python 8082, TypeScript 8083.
+# Default ports: didwebvh-rs 8081, didwebvh-py 8082, didwebvh-ts 8083.
 services:
-  resolver-rust:
-    build: ./resolvers/rust
+  resolver-didwebvh-rs:
+    build: ./resolvers/didwebvh-rs
     ports:
       - "8081:8081"
     environment:
       PORT: "8081"
 
-  resolver-python:
-    build: ./resolvers/python
+  resolver-didwebvh-py:
+    build: ./resolvers/didwebvh-py
     ports:
       - "8082:8082"
     environment:
       PORT: "8082"
 
-  resolver-typescript:
-    build: ./resolvers/typescript
+  resolver-didwebvh-ts:
+    build: ./resolvers/didwebvh-ts
     ports:
       - "8083:8083"
     environment:

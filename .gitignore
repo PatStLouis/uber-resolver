@@ -23,6 +23,8 @@ resolvers/didwebvh-py/src/**/*.egg-info/
 # Node / TypeScript
 resolvers/didwebvh-ts/node_modules/
 resolvers/didwebvh-ts/dist/
+frontend/node_modules/
+frontend/dist/
 **/.turbo/
 
 # Env

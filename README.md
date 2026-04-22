@@ -21,6 +21,7 @@ See [docs/REFERENCE_IMPLEMENTATIONS.md](docs/REFERENCE_IMPLEMENTATIONS.md) for i
 | `resolvers/didwebvh-py/` | Python resolver HTTP service (didwebvh-py). |
 | `resolvers/didwebvh-ts/` | TypeScript (Node) resolver HTTP service (didwebvh-ts). |
 | `contracts/` | Shared request/response schema (e.g. OpenAPI or JSON Schema) + golden test vectors. |
+| `frontend/` | React + shadcn playground for `did:webvh` resolution (proxies to the three engines in dev). |
 
 ## Principles
 
@@ -49,6 +50,8 @@ Response shape follows W3C DID Resolution where applicable; see [`contracts/open
 ```bash
 docker compose up --build
 ```
+
+**Web playground** (optional): from `frontend/`, run `npm install && npm run dev` while resolvers listen on **8081–8083** (or set `VITE_ENGINE_*` in `.env`). See [`frontend/README.md`](frontend/README.md).
 
 ## Status
 

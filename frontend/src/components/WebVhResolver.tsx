@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { AlertCircle, GitBranch, Info, Loader2, Sparkles } from 'lucide-react'
+import { AlertCircle, GitBranch, Loader2, Sparkles } from 'lucide-react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
@@ -381,24 +381,6 @@ export function WebVhResolver() {
                 ))}
               </div>
             )}
-            {lastHealthAt && health.every((h) => !h.ok) ? (
-              <Alert className="mt-3 border-amber-500/40 bg-amber-500/5">
-                <Info className="size-4 text-amber-600 dark:text-amber-400" aria-hidden />
-                <AlertTitle className="text-amber-900 dark:text-amber-100">
-                  No engines answered
-                </AlertTitle>
-                <AlertDescription className="text-xs text-amber-950/80 dark:text-amber-50/90">
-                  From the repository root run{' '}
-                  <code className="rounded bg-background/80 px-1 py-0.5 font-mono">
-                    docker compose up --build
-                  </code>{' '}
-                  or start each resolver on ports <strong>8081</strong>–<strong>8083</strong>, then use{' '}
-                  <code className="rounded bg-background/80 px-1 py-0.5 font-mono">npm run dev</code>{' '}
-                  in <code className="font-mono">frontend/</code> (the static preview server has no API
-                  proxy).
-                </AlertDescription>
-              </Alert>
-            ) : null}
             {lastHealthAt ? (
               <p className="mt-2 text-xs text-muted-foreground">
                 Last check:{' '}

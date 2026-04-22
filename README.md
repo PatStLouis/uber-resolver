@@ -8,6 +8,8 @@ Each resolver is a thin HTTP service wrapping the corresponding **decentralized-
 - Rust: [didwebvh-rs](https://github.com/decentralized-identity/didwebvh-rs)
 - Python: [didwebvh-py](https://github.com/decentralized-identity/didwebvh-py)
 
+Canonical source repository: [github.com/OpSecId/uber-resolver](https://github.com/OpSecId/uber-resolver).
+
 See [docs/REFERENCE_IMPLEMENTATIONS.md](docs/REFERENCE_IMPLEMENTATIONS.md) for integration notes and version alignment.
 
 ## Layout (planned)

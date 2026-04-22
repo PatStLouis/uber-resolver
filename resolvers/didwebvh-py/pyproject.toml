@@ -14,6 +14,9 @@ dependencies = [
   "uvicorn[standard]>=0.32",
 ]
 
+[project.urls]
+Repository = "https://github.com/OpSecId/uber-resolver"
+
 [project.scripts]
 uber-resolver-didwebvh-py = "uber_resolver_py.app:run"
 

@@ -1,5 +1,11 @@
-# Python resolver
+# Python resolver (`did:webvh`)
 
-HTTP service implementing the shared resolve contract. Scaffold only.
+Thin HTTP service (e.g. FastAPI) that uses **[didwebvh-py](https://github.com/decentralized-identity/didwebvh-py)**.
 
-Suggested stack: FastAPI or Starlette + httpx for outbound resolution.
+Upstream documents CLI resolution:
+
+```bash
+python3 -m did_webvh.resolver "did:webvh:…"
+```
+
+The HTTP adapter should call the same library entry points the resolver module uses (avoid parsing CLI output in production). Install via **Poetry** as in upstream `pyproject.toml`.

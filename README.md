@@ -1,6 +1,14 @@
 # uber-resolver
 
-One API surface, multiple DID resolver implementations (Rust, Python, TypeScript) behind a small gateway. The frontend talks only to the gateway; the gateway delegates to a selected engine (or runs comparison / fallback policies).
+One API surface, multiple **`did:webvh`** resolver implementations (Rust, Python, TypeScript) behind a small gateway. The frontend talks only to the gateway; the gateway delegates to a selected engine (or runs comparison / fallback policies).
+
+Each resolver is a thin HTTP service wrapping the corresponding **decentralized-identity** library:
+
+- TypeScript: [didwebvh-ts](https://github.com/decentralized-identity/didwebvh-ts)
+- Rust: [didwebvh-rs](https://github.com/decentralized-identity/didwebvh-rs)
+- Python: [didwebvh-py](https://github.com/decentralized-identity/didwebvh-py)
+
+See [docs/REFERENCE_IMPLEMENTATIONS.md](docs/REFERENCE_IMPLEMENTATIONS.md) for integration notes and version alignment.
 
 ## Layout (planned)
 

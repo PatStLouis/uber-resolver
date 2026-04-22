@@ -1,5 +1,7 @@
-# Rust resolver
+# Rust resolver (`did:webvh`)
 
-HTTP service implementing the shared resolve contract. Scaffold only.
+Thin HTTP service (e.g. Axum) that uses **[didwebvh-rs](https://github.com/decentralized-identity/didwebvh-rs)** as a library dependency.
 
-Suggested stack: Axum or Actix-web + hyper for outbound HTTPS resolution.
+Upstream documents a **`resolve`** example: `cargo run --example resolve -- <DID>` — the resolver API here should invoke the same resolution path the example uses, then serialize the result for the gateway.
+
+**Crate:** follow upstream `Cargo.toml` (crate name and features may change with releases; pin a version for reproducible comparisons across the three engines).

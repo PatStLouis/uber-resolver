@@ -36,7 +36,7 @@ function toW3c(result) {
       did,
       ...(controlled !== undefined ? { controlled } : {}),
       ...(meta && typeof meta === 'object' ? meta : {}),
-      driver: 'uber-resolver-didwebvh-ts/didwebvh-ts',
+      driver: 'didwebvh-ts',
     },
   };
   return base;

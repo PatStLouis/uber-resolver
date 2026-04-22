@@ -41,7 +41,7 @@ fn w3c_success(did: &str, document: serde_json::Value, doc_meta: serde_json::Val
         "didResolutionMetadata": {
             "contentType": "application/did+ld+json",
             "did": did,
-            "driver": "uber-resolver-didwebvh-rs/didwebvh-rs"
+            "driver": "didwebvh-rs"
         }
     })
 }
@@ -55,7 +55,7 @@ fn w3c_error(did: &str, err: &str, code: &str) -> serde_json::Value {
             "error": code,
             "did": did,
             "detail": err,
-            "driver": "uber-resolver-didwebvh-rs/didwebvh-rs"
+            "driver": "didwebvh-rs"
         }
     })
 }

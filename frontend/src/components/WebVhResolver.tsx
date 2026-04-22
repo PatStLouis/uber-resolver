@@ -29,6 +29,19 @@ type Mode = 'single' | 'compare'
 
 type EngineHealth = { engine: EngineId; ok: boolean; detail?: string; health?: HealthResponse }
 
+function healthErrorMessage(err: unknown): string {
+  if (err instanceof DOMException && err.name === 'AbortError') {
+    return 'Timed out (is the resolver running?)'
+  }
+  if (err instanceof TypeError) {
+    return 'Network error (check dev proxy / CORS)'
+  }
+  if (err instanceof Error) {
+    return err.message
+  }
+  return 'Unreachable'
+}
+
 async function probeEngines(): Promise<EngineHealth[]> {
   const next: EngineHealth[] = []
   for (const e of ENGINES) {
@@ -39,7 +52,7 @@ async function probeEngines(): Promise<EngineHealth[]> {
       next.push({
         engine: e,
         ok: false,
-        detail: err instanceof Error ? err.message : 'Unreachable',
+        detail: healthErrorMessage(err),
       })
     }
   }
@@ -70,6 +83,8 @@ export function WebVhResolver() {
   const [health, setHealth] = useState<EngineHealth[]>(() =>
     ENGINES.map((e) => ({ engine: e, ok: false })),
   )
+  const [healthChecking, setHealthChecking] = useState(false)
+  const [lastHealthAt, setLastHealthAt] = useState<Date | null>(null)
 
   const [singleResult, setSingleResult] = useState<{
     status: number
@@ -85,8 +100,15 @@ export function WebVhResolver() {
     >
   >({})
 
-  const refreshHealth = useCallback(async () => {
-    setHealth(await probeEngines())
+  const pingEngines = useCallback(async () => {
+    setHealthChecking(true)
+    try {
+      const next = await probeEngines()
+      setHealth(next)
+      setLastHealthAt(new Date())
+    } finally {
+      setHealthChecking(false)
+    }
   }, [])
 
   useEffect(() => {
@@ -95,6 +117,7 @@ export function WebVhResolver() {
       const next = await probeEngines()
       if (!cancelled) {
         setHealth(next)
+        setLastHealthAt(new Date())
       }
     })()
     return () => {
@@ -283,12 +306,19 @@ export function WebVhResolver() {
               )}
             </Button>
             <Button
-              disabled={loading}
-              onClick={() => void refreshHealth()}
+              disabled={healthChecking}
+              onClick={() => void pingEngines()}
               type="button"
               variant="outline"
             >
-              Ping engines
+              {healthChecking ? (
+                <>
+                  <Loader2 className="size-4 animate-spin" aria-hidden />
+                  Pinging…
+                </>
+              ) : (
+                'Ping engines'
+              )}
             </Button>
           </div>
 
@@ -308,6 +338,18 @@ export function WebVhResolver() {
                 </Badge>
               ))}
             </div>
+            {lastHealthAt ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Last check:{' '}
+                <time dateTime={lastHealthAt.toISOString()}>
+                  {lastHealthAt.toLocaleTimeString(undefined, {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  })}
+                </time>
+              </p>
+            ) : null}
           </div>
 
           {error ? (

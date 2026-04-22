@@ -2,6 +2,16 @@ export type EngineId = 'didwebvh-rs' | 'didwebvh-py' | 'didwebvh-ts'
 
 export const ENGINES: EngineId[] = ['didwebvh-rs', 'didwebvh-py', 'didwebvh-ts']
 
+/** Abort after `ms` so dead backends do not leave the UI hanging. */
+function requestTimeout(ms: number): AbortSignal {
+  if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+    return AbortSignal.timeout(ms)
+  }
+  const c = new AbortController()
+  setTimeout(() => c.abort(new DOMException('Timeout', 'AbortError')), ms)
+  return c.signal
+}
+
 const PROXY_BASE: Record<EngineId, string> = {
   'didwebvh-rs': '/engine/didwebvh-rs',
   'didwebvh-py': '/engine/didwebvh-py',
@@ -29,7 +39,9 @@ export type HealthResponse = {
 }
 
 export async function fetchHealth(engine: EngineId): Promise<HealthResponse> {
-  const res = await fetch(`${engineBaseUrl(engine)}/health`)
+  const res = await fetch(`${engineBaseUrl(engine)}/health`, {
+    signal: requestTimeout(8000),
+  })
   if (!res.ok) {
     throw new Error(`Health check failed (${res.status})`)
   }
@@ -46,6 +58,7 @@ export async function fetchResolve(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ did: did.trim() }),
+    signal: requestTimeout(120_000),
   })
   const text = await res.text()
   let body: ResolvePayload | string
